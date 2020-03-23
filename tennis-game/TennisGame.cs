@@ -19,6 +19,7 @@ namespace tennis.test
             var ScoreMap = new Dictionary<int, string>{
                 { 0, "Love" },
                 { 15, "Fifteen" },
+                  { 30, "Thirty" },
             };
 
             string result = ScoreMap[_score1];
