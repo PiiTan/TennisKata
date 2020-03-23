@@ -9,33 +9,17 @@ namespace tennis.test
         {
         }
 
-        [Test]
-        public void Give00TheResultShouldBeLoveAll()
+        [TestCase(0,0,"Love-All")]
+        [TestCase(0,15,"Love-Fifteen")]
+        [TestCase(15,0,"Fifteen-Love")]
+        public void GiveScoresTheResultShouldBeAsExpected(int score1, int score2, string expected)
         {
             // arrange
-            TennisGame game = new TennisGame(0,0);
+            TennisGame game = new TennisGame(score1,score2);
             
             // action
-            Assert.AreEqual( "Love-All", game.display() );
+            Assert.AreEqual(expected, game.display() );
         }
-
-        [Test]
-        public void Give015TheResultShouldBeLoveFifteen()
-        {
-            // arrange
-            TennisGame game = new TennisGame(0,15);
-            
-            // action
-            Assert.AreEqual( "Love-Fifteen", game.display() );
-        }
-        [Test]
-        public void Give150TheResultShouldBeFifteenLove()
-        {
-            // arrange
-            TennisGame game = new TennisGame(15,0);
-            
-            // action
-            Assert.AreEqual( "Fifteen-Love", game.display() );
-        }
+       
     }
 }
