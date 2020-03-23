@@ -42,10 +42,14 @@ namespace tennis.test
         public String scores(Player player)
         {
             if (player == Player.One)
-            {
-                if (_score1 == 0)
-                    _score1 = 1;
-            }
+                _score1++;
+            else
+                _score2++;
+
+            // Check win conditions
+            if (_score1 == 4 && _score2 != 3)
+                return "Player One Wins";
+
             return display();
         }
     }

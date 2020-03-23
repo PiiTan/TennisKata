@@ -35,5 +35,11 @@ namespace tennis.test
             
             Assert.AreEqual("Fifteen-Love", game.scores(Player.One));
         }
+        [Test]
+        public void PlayerOneWinsIfPlayerOneAlreadyScores40AndPlayerTwoIsNotAt40(){
+            TennisGame game = new TennisGame(40, 0);
+            
+            Assert.AreEqual("Player One Wins", game.scores(Player.One));
+        }
     }
 }
