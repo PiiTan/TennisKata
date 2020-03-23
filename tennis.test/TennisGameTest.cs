@@ -57,7 +57,7 @@ namespace tennis.test
         [TestCase(Player.Two, "Player Two Advantage")]
         public void PlayerGainAdvantageOnDeuce(Player player, string expected)
         {
-            TennisGame game = new TennisGame(40,40);
+            TennisGame game = new TennisGame(40, 40);
 
             Assert.AreEqual(expected, game.scores(player));
         }
@@ -66,10 +66,21 @@ namespace tennis.test
         [TestCase(Player.Two)]
         public void PlayerReturnToDeuceOnAdvantage(Player player)
         {
-            TennisGame game = new TennisGame(40,40);
+            TennisGame game = new TennisGame(40, 40);
             game.scores(Opponent(player));
 
             Assert.AreEqual("Deuce", game.scores(player));
+        }
+
+        [TestCase(Player.One)]
+        public void WinOccursAfterChallenge(Player player)
+        {
+            TennisGame game = new TennisGame(40, 40);
+            Assert.AreEqual("Player One Advantage", game.scores(player));
+            Assert.AreEqual("Deuce", game.scores(Opponent(player)));
+            Assert.AreEqual("Player One Advantage", game.scores(player));
+
+            Assert.AreEqual("Player One Wins", game.scores(player));
         }
         private Player Opponent(Player player)
         {

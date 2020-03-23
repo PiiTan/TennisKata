@@ -46,10 +46,10 @@ namespace tennis.test
         public String scores(Player player)
         {
             PlayerScore[player]++;
-
-            if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] < 3)
+            int pointDiff = PlayerScore[player] - PlayerScore[Opponent(player)];
+            if (PlayerScore[player] >= 4 && pointDiff >= 2)
                 return $"Player {getPlayerName(player)} Wins";
-            else if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] == 3)
+            else if (PlayerScore[player] >= 4 && pointDiff == 1)
                 return $"Player {getPlayerName(player)} Advantage";
 
             return display();
