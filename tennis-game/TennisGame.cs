@@ -7,6 +7,12 @@ namespace tennis.test
     {
         private int _score1;
         private int _score2;
+        private static Dictionary<int, string> ScoreMap = new Dictionary<int, string>{
+                { 0, "Love" },
+                { 15, "Fifteen" },
+                  { 30, "Thirty" },
+                  { 40, "Fourty" },
+            }; 
 
         public TennisGame(int score1, int score2)
         {
@@ -15,27 +21,19 @@ namespace tennis.test
         }
 
         public String display()
-        {
-            if (_score1 == 40 && _score2 == 40)
-                return "Deuce";
-            var ScoreMap = new Dictionary<int, string>{
-                { 0, "Love" },
-                { 15, "Fifteen" },
-                  { 30, "Thirty" },
-                  { 40, "Fourty" },
-            };
-
+        {            
             string result = ScoreMap[_score1];
             
             result += "-";
 
             if (_score1 == _score2) {
+                if (_score1 == 40)
+                    return "Deuce";
                 result += "All";
             }
             else 
                 result += ScoreMap[_score2];
             
-
             return result;
         }
     }
