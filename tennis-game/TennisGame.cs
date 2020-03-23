@@ -21,20 +21,14 @@ namespace tennis.test
         }
 
         public String display()
-        {            
-            string result = ScoreMap[_score1];
-            
-            result += "-";
-
+        {
             if (_score1 == _score2) {
                 if (_score1 == 40)
                     return "Deuce";
-                result += "All";
+                return $"{ScoreMap[_score1]}-All";
             }
-            else 
-                result += ScoreMap[_score2];
-            
-            return result;
+                
+            return $"{ScoreMap[_score1]}-{ScoreMap[_score2]}";
         }
     }
 }
