@@ -16,6 +16,8 @@ namespace tennis.test
 
         public String display()
         {
+            if (_score1 == 40 && _score2 == 40)
+                return "Deuce";
             var ScoreMap = new Dictionary<int, string>{
                 { 0, "Love" },
                 { 15, "Fifteen" },

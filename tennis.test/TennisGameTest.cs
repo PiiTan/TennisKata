@@ -17,6 +17,8 @@ namespace tennis.test
         [TestCase(30,15,"Thirty-Fifteen")]
         [TestCase(30,30,"Thirty-All")]
         [TestCase(40,30,"Fourty-Thirty")]
+        [TestCase(30,40,"Thirty-Fourty")]
+                [TestCase(40,40,"Deuce")]
         public void GiveScoresTheResultShouldBeAsExpected(int score1, int score2, string expected)
         {
             // arrange
