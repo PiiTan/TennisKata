@@ -8,7 +8,7 @@ namespace tennis.test
         public void Setup()
         {
         }
-       
+
         // Start: Score Display
         [TestCase(0, 0, "Love-All")]
         [TestCase(0, 15, "Love-Fifteen")]
@@ -30,22 +30,35 @@ namespace tennis.test
         }
         // End: Score Display
         [Test]
-        public void ScoreShouldIncrementPlayerScore(){
+        public void ScoreShouldIncrementPlayerScore()
+        {
             TennisGame game = new TennisGame(0, 0);
-            
+
             Assert.AreEqual("Fifteen-Love", game.scores(Player.One));
         }
         [TestCase(Player.One, "Player One Wins")]
         [TestCase(Player.Two, "Player Two Wins")]
-        public void PlayerWinsIfPlayerAlreadyScores40AndOtherPlayerIsNotAt40(Player player, string expected){
+        public void PlayerWinsIfPlayerAlreadyScores40AndOtherPlayerIsNotAt40(Player player, string expected)
+        {
             TennisGame game;
-            
-            if(player == Player.One) {
+
+            if (player == Player.One)
+            {
                 game = new TennisGame(40, 0);
-            } else {
+            }
+            else
+            {
                 game = new TennisGame(0, 40);
             }
-            
+
+            Assert.AreEqual(expected, game.scores(player));
+        }
+        [TestCase(Player.One, "Player One Advantage")]
+        [TestCase(Player.Two, "Player Two Advantage")]
+        public void PlayerGainAdvantageOnDeuce(Player player, string expected)
+        {
+            TennisGame game = new TennisGame(40,40);
+
             Assert.AreEqual(expected, game.scores(player));
         }
     }

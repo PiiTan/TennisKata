@@ -10,8 +10,7 @@ namespace tennis.test
     }
     public class TennisGame
     {
-        private int _score1;
-        private int _score2;
+
         private static string[] SCORES = new string[] { "Love", "Fifteen", "Thirty", "Fourty" };
 
         private static Dictionary<int, int> ScoreMap = new Dictionary<int, int>{
@@ -28,49 +27,50 @@ namespace tennis.test
 
         public TennisGame(int score1, int score2)
         {
-            this._score1 = ScoreMap[score1];
-            this._score2 = ScoreMap[score2];
-
             PlayerScore[Player.One] = ScoreMap[score1];
             PlayerScore[Player.Two] = ScoreMap[score2];
         }
 
         public String display()
         {
-            if (_score1 == _score2)
+            if (PlayerScore[Player.One] == PlayerScore[Player.Two])
             {
-                if (_score1 == 3)
+                if (PlayerScore[Player.One] == 3)
                     return "Deuce";
-                return $"{SCORES[_score1]}-All";
+                return $"{SCORES[PlayerScore[Player.One]]}-All";
             }
 
-            return $"{SCORES[_score1]}-{SCORES[_score2]}";
+            return $"{SCORES[PlayerScore[Player.One]]}-{SCORES[PlayerScore[Player.Two]]}";
         }
 
         public String scores(Player player)
         {
             PlayerScore[player]++;
-            if (player == Player.One)
-            {
-                _score1++;
-                if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] != 3)
-                    return "Player One Wins";
-            }
-            else
-            {
-                _score2++;
-                if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] != 3)
-                    return "Player Two Wins";
-            }
 
+            if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] != 3)
+                return $"Player {getPlayerName(player)} Wins";
+            else if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] == 3)
+                return $"Player {getPlayerName(player)} Advantage";
+                
             return display();
         }
 
-        private Player Opponent(Player player) {
-            if(player == Player.One)
-            return Player.Two;
+        private Player Opponent(Player player)
+        {
+            if (player == Player.One)
+                return Player.Two;
 
             return Player.One;
+        }
+
+        private String getPlayerName(Player player)
+        {
+            string playerText = "One";
+            if (player == Player.Two)
+            {
+                playerText = "Two";
+            }
+            return playerText;
         }
     }
 }
