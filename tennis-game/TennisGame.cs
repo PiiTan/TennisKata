@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace tennis.test
 {
@@ -15,25 +16,22 @@ namespace tennis.test
 
         public String display()
         {
-            string result = string.Empty;
-            if(_score1 == 0) {
-                result += "Love";
-            }
-            else {
-                result += "Fifteen";
-            }
+            var ScoreMap = new Dictionary<int, string>{
+                { 0, "Love" },
+                { 15, "Fifteen" },
+            };
 
+            string result = ScoreMap[_score1];
+            
             result += "-";
 
             if (_score1 == _score2) {
                 result += "All";
             }
-            else if(_score2 == 15) {
-                result += "Fifteen";
-            }
-            else {
-                result += "Love";
-            }
+            else 
+                result += ScoreMap[_score2];
+            
+
             return result;
         }
     }
