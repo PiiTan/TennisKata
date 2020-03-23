@@ -15,7 +15,26 @@ namespace tennis.test
 
         public String display()
         {
-            return "Love-All";
+            string result = string.Empty;
+            if(_score1 == 0) {
+                result += "Love";
+            }
+            else {
+                result += "Fifteen";
+            }
+
+            result += "-";
+
+            if (_score1 == _score2) {
+                result += "All";
+            }
+            else if(_score2 == 15) {
+                result += "Fifteen";
+            }
+            else {
+                result += "Love";
+            }
+            return result;
         }
     }
 }
