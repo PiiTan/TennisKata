@@ -13,29 +13,30 @@ namespace tennis.test
 
         private int _score1;
         private int _score2;
-        private static Dictionary<int, string> ScoreMap = new Dictionary<int, string>{
-                { 0, "Love" },
-                { 15, "Fifteen" },
-                  { 30, "Thirty" },
-                  { 40, "Fourty" },
-            };
+        private static string[] SCORES = new string[] { "Love", "Fifteen", "Thirty", "Fourty" };
 
+        private static Dictionary<int, int> ScoreMap = new Dictionary<int, int>{
+            { 0, 0},
+            { 15, 1},
+            { 30, 2},
+            { 40, 3}
+        };
         public TennisGame(int score1, int score2)
         {
-            this._score1 = score1;
-            this._score2 = score2;
+            this._score1 = ScoreMap[score1];
+            this._score2 = ScoreMap[score2];
         }
 
         public String display()
         {
             if (_score1 == _score2)
             {
-                if (_score1 == 40)
+                if (_score1 == 3)
                     return "Deuce";
-                return $"{ScoreMap[_score1]}-All";
+                return $"{SCORES[_score1]}-All";
             }
 
-            return $"{ScoreMap[_score1]}-{ScoreMap[_score2]}";
+            return $"{SCORES[_score1]}-{SCORES[_score2]}";
         }
 
         public String scores(Player player)
@@ -43,7 +44,7 @@ namespace tennis.test
             if (player == Player.One)
             {
                 if (_score1 == 0)
-                    _score1 = 15;
+                    _score1 = 1;
             }
             return display();
         }
