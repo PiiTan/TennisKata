@@ -35,7 +35,7 @@ namespace tennis.test
         {
             if (PlayerScore[Player.One] == PlayerScore[Player.Two])
             {
-                if (PlayerScore[Player.One] == 3)
+                if (PlayerScore[Player.One] >= 3)
                     return "Deuce";
                 return $"{SCORES[PlayerScore[Player.One]]}-All";
             }
@@ -47,11 +47,11 @@ namespace tennis.test
         {
             PlayerScore[player]++;
 
-            if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] != 3)
+            if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] < 3)
                 return $"Player {getPlayerName(player)} Wins";
             else if (PlayerScore[player] == 4 && PlayerScore[Opponent(player)] == 3)
                 return $"Player {getPlayerName(player)} Advantage";
-                
+
             return display();
         }
 

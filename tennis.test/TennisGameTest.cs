@@ -61,5 +61,22 @@ namespace tennis.test
 
             Assert.AreEqual(expected, game.scores(player));
         }
+
+        [TestCase(Player.One)]
+        [TestCase(Player.Two)]
+        public void PlayerReturnToDeuceOnAdvantage(Player player)
+        {
+            TennisGame game = new TennisGame(40,40);
+            game.scores(Opponent(player));
+
+            Assert.AreEqual("Deuce", game.scores(player));
+        }
+        private Player Opponent(Player player)
+        {
+            if (player == Player.One)
+                return Player.Two;
+
+            return Player.One;
+        }
     }
 }
