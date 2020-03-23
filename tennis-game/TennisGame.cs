@@ -10,7 +10,6 @@ namespace tennis.test
     }
     public class TennisGame
     {
-
         private int _score1;
         private int _score2;
         private static string[] SCORES = new string[] { "Love", "Fifteen", "Thirty", "Fourty" };
@@ -49,6 +48,8 @@ namespace tennis.test
             // Check win conditions
             if (_score1 == 4 && _score2 != 3)
                 return "Player One Wins";
+            else if (_score2 == 4 && _score1 != 3)
+                return "Player Two Wins";
 
             return display();
         }

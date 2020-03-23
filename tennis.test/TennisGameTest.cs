@@ -35,11 +35,18 @@ namespace tennis.test
             
             Assert.AreEqual("Fifteen-Love", game.scores(Player.One));
         }
-        [Test]
-        public void PlayerOneWinsIfPlayerOneAlreadyScores40AndPlayerTwoIsNotAt40(){
-            TennisGame game = new TennisGame(40, 0);
+        [TestCase(Player.One, "Player One Wins")]
+        [TestCase(Player.Two, "Player Two Wins")]
+        public void PlayerWinsIfPlayerAlreadyScores40AndOtherPlayerIsNotAt40(Player player, string expected){
+            TennisGame game;
             
-            Assert.AreEqual("Player One Wins", game.scores(Player.One));
+            if(player == Player.One) {
+                game = new TennisGame(40, 0);
+            } else {
+                game = new TennisGame(0, 40);
+            }
+            
+            Assert.AreEqual(expected, game.scores(player));
         }
     }
 }
