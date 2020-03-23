@@ -20,6 +20,7 @@ namespace tennis.test
                 { 0, "Love" },
                 { 15, "Fifteen" },
                   { 30, "Thirty" },
+                  { 40, "Fourty" },
             };
 
             string result = ScoreMap[_score1];
